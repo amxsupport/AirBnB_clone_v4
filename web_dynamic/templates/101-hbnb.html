@@ -71,3 +71,44 @@
 	      {% endfor %}
 	    </ul>
 	  </div>
+	  <!-- **********************
+	       AMENITIES
+	       ********************** -->
+
+	  <div class="amenities">
+	    <h3>Amenities</h3>
+	    <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-right:-10px">&nbsp;</h4>
+	    <ul class="popover" style="padding-left:15px">
+	      {% for amenity in amens|sort(attribute='name') %}
+	      <LI><INPUT type="checkbox" style="margin-right:10px" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{ amenity.name }}</LI>
+	      {% endfor %}
+	    </ul>
+	  </div>
+
+	  <!-- **********************
+	       SEARCH BUTTON
+	       ********************** -->
+
+	  <button>Search</button>
+	</section>
+
+	<section class="places">
+	  <h1>Places</h1>
+
+	<!-- **********************
+	     BEGIN 1 PLACE
+	     ********************** -->
+
+
+
+	</section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+      Holberton School
+    </footer>
+  </body>
+</html>
