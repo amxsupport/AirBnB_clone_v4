@@ -80,3 +80,23 @@ $(function () {
       .then((genReview) => ($(`#${review.place_id}`).append(genReview)));
   }
 
+  function renderReviews () {
+    $('.showreviews').off('click');
+    $('.showreviews').click(function (event) {
+      const placeId = this.dataset.placeid;
+      if ($(`.${placeId}`).text() === 'hide') {
+        $(`.${placeId}`).text('show');
+        $(`#${placeId} > li`).remove();
+      } else {
+        $(`.${placeId}`).text('hide');
+        window.fetch(`http://0.0.0.0:5001/api/v1/places/${placeId}/reviews`)
+          .then((response) => response.json())
+          .then((data) => {
+            data.forEach(review => {
+              generateReviewHTML(review);
+            });
+          });
+      }
+    });
+  }
+
