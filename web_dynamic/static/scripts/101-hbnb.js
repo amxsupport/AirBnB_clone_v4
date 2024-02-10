@@ -65,4 +65,18 @@ $(function () {
     }
   });
 
-  
+  function generateReviewHTML (review) {
+    window.fetch(`http://0.0.0.0:5001/api/v1/users/${review.user_id}`)
+      .then((res) => res.json())
+      .then((data) => `${data.first_name} ${data.last_name}`)
+      .then((fullName) => {
+        return (
+        `<li style="list-style-type:none;">
+          <h3>From ${fullName} on ${review.created_at}</h3>
+          <p>${review.text}</p>
+        </li>`
+        );
+      })
+      .then((genReview) => ($(`#${review.place_id}`).append(genReview)));
+  }
+
