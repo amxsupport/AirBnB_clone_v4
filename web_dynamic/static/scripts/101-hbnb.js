@@ -100,3 +100,26 @@ $(function () {
     });
   }
 
+  function renderPlaces (filters = '{}') {
+    $('section.places > article').remove();
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: filters
+    };
+    window.fetch('http://0.0.0.0:5001/api/v1/places_search', options)
+      .then((res) => res.json())
+      .then((data) => {
+        let i;
+        for (i = 0; i < data.length; i++) {
+          $('section.places').append(createHTML(data[i]));
+        }
+      })
+      .then(() => renderReviews());
+  }
+
+  renderPlaces();
+
+  
