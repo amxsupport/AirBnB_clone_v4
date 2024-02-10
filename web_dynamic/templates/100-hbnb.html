@@ -31,3 +31,85 @@
     <SCRIPT src="../static/scripts/100-hbnb.js?{{ cache_id }}"></SCRIPT>
 
   </head>
+<!-- **********************
+       BODY
+       ********************** -->
+
+  <body>
+
+    <!-- **********************
+	 HEADER
+	 ********************** -->
+
+    <header style='display: flex; justify-content: flex-end; align-items: center'>
+		<div id='api_status' style='justify-content: right;width: 40px; height: 40px; border-radius: 50%; background-color: #cccccc; margin: 30px'></div>
+    </header>
+    <main>
+      <div class="container">
+
+	<!-- **********************
+	     FILTERS
+	     ********************** -->
+
+	<section class="filters">
+
+	  <!-- **********************
+	       LOCATIONS
+	       ********************** -->
+
+	  <div class="locations">
+	    <h3>States</h3>
+	    <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-right:5px">&nbsp;</h4>
+	    <ul class="popover">
+	      {% for state in states|dictsort %}
+	      <LI class="states"><INPUT type="checkbox" style="margin-right:10px" data-id="{{ state[1].id }}" data-name="{{ state[1].name }}"><H2 style="display:inline-block">{{ state[0] }}</H2></LI>
+	      <UL>
+		{% for city in state[1].cities|sort(attribute='name') %}
+		<LI class="cities"><INPUT type="checkbox" style="margin-right:10px" data-id="{{ city.id }}" data-name="{{ city.name }}">{{ city.name }}</LI>
+		{% endfor %}
+	      </UL>
+	      {% endfor %}
+	    </ul>
+	  </div>
+
+	  <!-- **********************
+	       AMENITIES
+	       ********************** -->
+
+	  <div class="amenities">
+	    <h3>Amenities</h3>
+	    <h4 style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-right:-10px">&nbsp;</h4>
+	    <ul class="popover" style="padding-left:15px">
+	      {% for amenity in amens|sort(attribute='name') %}
+	      <LI><INPUT type="checkbox" style="margin-right:10px" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{ amenity.name }}</LI>
+	      {% endfor %}
+	    </ul>
+	  </div>
+
+	  <!-- **********************
+	       SEARCH BUTTON
+	       ********************** -->
+
+	  <button>Search</button>
+	</section>
+
+	<section class="places">
+	  <h1>Places</h1>
+
+	<!-- **********************
+	     BEGIN 1 PLACE
+	     ********************** -->
+
+
+
+	</section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+      Holberton School
+    </footer>
+  </body>
+</html>
