@@ -42,3 +42,27 @@ $(function () {
     const names = Object.values(amenityIds);
     $('.amenities h4').text(names.join(', '));
   });
+  
+  $('.filters button').click(function () {
+    const filters = JSON.stringify(
+      {
+        amenities: Object.keys(amenityIds),
+        states: Object.keys(stateIds),
+        cities: Object.keys(cityIds)
+      });
+    renderPlaces(filters);
+  });
+
+  $.ajax({
+    url: 'http://0.0.0.0:5001/api/v1/status/',
+    success: function (data) {
+      console.log(data.status);
+      if (data.status === 'OK') {
+        $('#api_status').addClass('available');
+      } else {
+        $('#api_status').removeClass('available');
+      }
+    }
+  });
+
+  
